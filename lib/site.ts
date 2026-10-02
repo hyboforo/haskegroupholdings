@@ -1,7 +1,7 @@
 // Central site settings. Edit these first.
 export const site = {
   name: "Haske Group Holdings",
-  url: "https://www.haskegroupholdings.com",
+  url: "https://haskegroupholdings.com",
   description:
     "Haske Group Holdings is the parent company of HaskeHub and HaskeConsulting, building digital businesses in Ghana.",
   // TODO: confirm the real inbox before launch.
