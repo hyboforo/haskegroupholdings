@@ -396,3 +396,139 @@ h3 {
   padding-block: 24px;
   font-size: 14px;
 }
+
+/* ---- Hero at-a-glance ---- */
+.hero {
+  display: grid;
+  gap: 56px;
+  align-items: end;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+}
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+.glance {
+  margin: 0;
+  border-top: 2px solid var(--ink);
+}
+.glance div {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 16px;
+}
+.glance dt {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  padding-top: 3px;
+}
+.glance dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ---- Company cards ---- */
+.company__focus {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.company__focus li {
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--ink-line);
+  color: #e6e2d8;
+}
+.company__note {
+  font-size: 15px;
+  color: var(--muted-on-ink) !important;
+}
+
+/* ---- Principles ---- */
+.principles {
+  margin-top: 40px;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+.principles > div {
+  border-top: 2px solid var(--accent);
+  padding-top: 18px;
+}
+.principles__num {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent-text);
+}
+.principles h3 {
+  font-size: 24px;
+  margin: 8px 0;
+}
+.principles p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---- Leadership ---- */
+.leaders {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+.leader {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.leader__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--accent);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.leader h3 {
+  font-size: 22px;
+}
+.leader__role {
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent-text);
+}
+.leader .muted {
+  margin: 0;
+  font-size: 15.5px;
+}
+.leader__link {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-weight: 600;
+  align-self: flex-start;
+}

@@ -3,14 +3,13 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Privacy" };
 
-// TODO: have this reviewed against Ghana's Data Protection Act, 2012 (Act 843) before launch.
 export default function Privacy() {
   return (
     <section className="section">
       <div className="container prose">
         <p className="eyebrow">Privacy</p>
         <h1 className="h-page">Privacy notice</h1>
-        <p>Last updated: [date]</p>
+        <p>Last updated: 2 October 2026</p>
         <p>
           This notice covers {site.url.replace("https://", "")}. HaskeHub and HaskeConsulting have their own privacy
           notices on their own sites.

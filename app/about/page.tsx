@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { companies } from "@/lib/site";
+import { companies, leaders, site } from "@/lib/site";
+import { Arrow } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "The story, values and leadership behind Haske Group Holdings.",
+  description: "Who we are, what we stand for, and the people behind Haske Group Holdings.",
 };
 
-// TODO: replace with real people. Add a photo to /public/team and set `photo`.
-const leaders = [
-  { name: "[Name]", role: "Founder & CEO", photo: "" },
-  { name: "[Name]", role: "[Role]", photo: "" },
-];
-
 const values = [
-  { title: "Built for here", body: "We design for how people in Ghana actually buy, pay and talk: mobile money, WhatsApp and local delivery first." },
+  { title: "Built for here", body: "We design for how people in Ghana actually buy, pay and talk: mobile money, WhatsApp and SMS first." },
   { title: "Earn trust", body: "Privacy and honesty come before growth. HaskeHub shares no one's contact details without their say-so." },
   { title: "Own the outcome", body: "We run our own products, so we build the way owners do and stay after launch." },
 ];
@@ -26,14 +21,16 @@ export default function About() {
           <p className="eyebrow">About</p>
           <h1 className="h-page">Haske means light. We build things that make business clearer.</h1>
           <p className="lead">
-            [Your story: why Haske was founded, when, and the problem you set out to solve. Two or three sentences.]
+            {site.name} owns and supports a small group of Ghanaian technology businesses. Each one runs under its own name
+            and serves its own customers. The group gives them shared leadership, finance and engineering standards.
           </p>
         </div>
       </section>
 
       <section className="section section--line">
         <div className="container">
-          <h2 className="h-section" style={{ marginBottom: 40 }}>What we stand for</h2>
+          <p className="eyebrow">What we stand for</p>
+          <h2 className="h-section" style={{ marginBottom: 40 }}>Our values</h2>
           <div className="grid">
             {values.map((v) => (
               <div key={v.title} className="card">
@@ -45,20 +42,27 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section section--line">
+      <section className="section section--line" aria-labelledby="leadership">
         <div className="container">
-          <h2 className="h-section" style={{ marginBottom: 40 }}>Leadership</h2>
-          <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
-            {leaders.map((p, i) => (
-              <div key={i} className="person">
+          <p className="eyebrow">The people behind Haske</p>
+          <h2 id="leadership" className="h-section" style={{ marginBottom: 40 }}>Leadership</h2>
+          <div className="leaders">
+            {leaders.map((p) => (
+              <article key={p.name} className="leader">
                 {p.photo ? (
-                  <img src={p.photo} alt={p.name} className="person__photo" style={{ objectFit: "cover" }} />
+                  <img src={p.photo} alt={p.name} className="leader__avatar" />
                 ) : (
-                  <div className="person__photo">[Photo]</div>
+                  <div className="leader__avatar" aria-hidden="true">{p.initials}</div>
                 )}
-                <strong>{p.name}</strong>
-                <span className="muted" style={{ fontSize: 15 }}>{p.role}</span>
-              </div>
+                <h3>{p.name}</h3>
+                <p className="leader__role">{p.role}</p>
+                <p className="muted">{p.short}</p>
+                {p.linkedin && (
+                  <a href={p.linkedin} className="leader__link" rel="noopener" aria-label={`${p.name} on LinkedIn`}>
+                    LinkedIn <Arrow />
+                  </a>
+                )}
+              </article>
             ))}
           </div>
         </div>
@@ -66,12 +70,20 @@ export default function About() {
 
       <section className="section section--ink">
         <div className="container">
-          <h2 className="h-section" style={{ marginBottom: 32 }}>Our companies</h2>
+          <p className="eyebrow">Our companies</p>
+          <h2 className="h-section" style={{ marginBottom: 32 }}>Part of the group</h2>
           <div className="grid">
             {companies.map((c) => (
               <a key={c.name} href={c.url} className="company" style={{ textDecoration: "none", color: "inherit" }}>
+                <div className="company__kind">
+                  <span className="company__dot" style={{ background: c.color }} />
+                  {c.kind}
+                </div>
                 <h3 style={{ fontSize: 28 }}>{c.name}</h3>
                 <p>{c.summary}</p>
+                <span className="company__link">
+                  Visit {c.domain} <Arrow />
+                </span>
               </a>
             ))}
           </div>

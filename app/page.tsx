@@ -1,35 +1,55 @@
 import Link from "next/link";
-import { companies, site } from "@/lib/site";
+import { companies, principles, site } from "@/lib/site";
 import { Arrow } from "@/components/Icons";
 
 export default function Home() {
   return (
     <>
       <section className="section">
-        <div className="container" style={{ paddingTop: 24 }}>
-          <p className="eyebrow">Haske · light</p>
-          <h1 className="h-display">We build the businesses that help Ghana work better online.</h1>
-          <p className="lead">
-            {site.name} is the parent company of HaskeHub and HaskeConsulting. {/* TODO: one more sentence on your mission, founding year or where you operate. */}
-          </p>
-          <div className="btn-row">
-            <a href="#companies" className="btn btn--solid">
-              Meet our companies
-            </a>
-            <Link href="/contact/" className="btn btn--ghost">
-              Contact the group
-            </Link>
+        <div className="container hero">
+          <div>
+            <p className="eyebrow">Haske · light</p>
+            <h1 className="h-display">We build the businesses that help Ghana work better online.</h1>
+            <p className="lead">
+              {site.name} is the Accra-based parent company of HaskeHub and HaskeConsulting. We start, own and support
+              technology businesses built for how Ghana works.
+            </p>
+            <div className="btn-row">
+              <a href="#companies" className="btn btn--solid">
+                Meet our companies
+              </a>
+              <Link href="/contact/" className="btn btn--ghost">
+                Contact the group
+              </Link>
+            </div>
           </div>
+
+          <dl className="glance" aria-label="The group at a glance">
+            <div>
+              <dt>Companies</dt>
+              <dd>HaskeHub · HaskeConsulting</dd>
+            </div>
+            <div>
+              <dt>Sectors</dt>
+              <dd>Creator marketing · Technology services</dd>
+            </div>
+            <div>
+              <dt>Products</dt>
+              <dd>HaskeHub · Taskers Ghana</dd>
+            </div>
+            <div>
+              <dt>Based in</dt>
+              <dd>{site.address}</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
       <section id="companies" className="section section--ink">
         <div className="container">
-          <h2 className="h-section">Our companies</h2>
-          <p className="lead" style={{ marginTop: 12, marginBottom: 48 }}>
-            Two businesses, each with its own customers and its own team.
-          </p>
-          <div className="grid">
+          <p className="eyebrow">Our companies</p>
+          <h2 className="h-section">Two businesses, each with its own customers and team.</h2>
+          <div className="grid" style={{ marginTop: 48 }}>
             {companies.map((c) => (
               <article key={c.name} className="company">
                 <div className="company__kind">
@@ -38,6 +58,12 @@ export default function Home() {
                 </div>
                 <h3>{c.name}</h3>
                 <p>{c.summary}</p>
+                <ul className="company__focus">
+                  {c.focus.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+                {c.note && <p className="company__note">{c.note}</p>}
                 <a href={c.url} className="company__link">
                   Visit {c.domain} <Arrow />
                 </a>
@@ -48,19 +74,21 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="container grid grid--wide">
-          <div>
-            <h2 className="h-section">One group, separate brands</h2>
+        <div className="container">
+          <p className="eyebrow">How the group works</p>
+          <h2 className="h-section" style={{ maxWidth: 720 }}>One group, separate brands.</h2>
+          <div className="principles">
+            {principles.map((p, i) => (
+              <div key={p.title}>
+                <span className="principles__num">0{i + 1}</span>
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+              </div>
+            ))}
           </div>
-          <div>
-            <p className="muted" style={{ marginTop: 0 }}>
-              Each Haske company runs under its own name, with its own team and customers. The group provides the
-              shared foundations: leadership, finance, hiring and the engineering practices our companies build on.
-            </p>
-            <Link href="/about/" className="btn btn--ghost" style={{ marginTop: 16 }}>
-              About the group
-            </Link>
-          </div>
+          <Link href="/about/" className="btn btn--ghost" style={{ marginTop: 40 }}>
+            About the group
+          </Link>
         </div>
       </section>
 
